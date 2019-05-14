@@ -34,6 +34,20 @@ class InsertionSort:
         return arr
 
 
+class BubbleSort:
+    @staticmethod
+    def sort(arr):
+        for i in range(len(arr) - 1):
+            swapped = False
+            for j in range(len(arr) - 1 - i):
+                if arr[j] > arr[j+1]:
+                    arr[j], arr[j + 1] = arr[j + 1], arr[j]  # replace
+                    swapped = True
+            if not swapped:
+                break
+        return arr
+
+
 class TestSort(unittest.TestCase):
 
     _arrays = [[], [200], [1, 2, 3, 4, 5], [5, 4, 3, 2, 1], [44, 4, -5, 0, 0, 4, 2, 1, 100, 101, 2]]
@@ -41,8 +55,9 @@ class TestSort(unittest.TestCase):
     def test_sort(self):
         for array in self._arrays:
             expected = sorted(array.copy())
-            self.assertEqual(MergeSort().sort(array), expected, "Error - Merge Sort: {}".format(array))
-            self.assertEqual(InsertionSort().sort(array), expected, "Error - Insertion Sort: {}".format(array))
+            self.assertEqual(MergeSort().sort(array.copy()), expected, "Error - Merge Sort: {}".format(array))
+            self.assertEqual(InsertionSort().sort(array.copy()), expected, "Error - Insertion Sort: {}".format(array))
+            self.assertEqual(BubbleSort().sort(array.copy()), expected, "Error - Bubble Sort: {}".format(array))
 
 
 if __name__ == '__main__':
