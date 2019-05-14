@@ -22,15 +22,27 @@ class MergeSort:
         return self._merge_sort(arr)
 
 
-class TestMergeSort(unittest.TestCase):
+class InsertionSort:
+    @staticmethod
+    def sort(arr):
+        if len(arr) < 2:
+            return arr
+        for i in range(1, len(arr)):
+            while i > 0 and arr[i-1] > arr[i]:
+                arr[i], arr[i-1] = arr[i-1], arr[i]  # replace
+                i -= 1
+        return arr
+
+
+class TestSort(unittest.TestCase):
 
     _arrays = [[], [200], [1, 2, 3, 4, 5], [5, 4, 3, 2, 1], [44, 4, -5, 0, 0, 4, 2, 1, 100, 101, 2]]
 
-    def test_merge_sort(self):
-        merge_sort = MergeSort()
+    def test_sort(self):
         for array in self._arrays:
             expected = sorted(array.copy())
-            self.assertEqual(merge_sort.sort(array), expected, "Error: {}".format(array))
+            self.assertEqual(MergeSort().sort(array), expected, "Error - Merge Sort: {}".format(array))
+            self.assertEqual(InsertionSort().sort(array), expected, "Error - Insertion Sort: {}".format(array))
 
 
 if __name__ == '__main__':
