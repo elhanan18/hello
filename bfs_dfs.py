@@ -22,7 +22,23 @@ class BFS:
         return res
 
 
-class TestBFS(unittest.TestCase):
+# BT DFS
+class DFS:
+    def __init__(self):
+        self._visited = set()
+        self._res = []
+
+    def run(self, root):
+        if root:
+            self._visited.add(root)
+            self._res.append(root.val)
+            self.run(root.left)
+            self.run(root.right)
+
+        return self._res
+
+
+class TestBFS_DFS(unittest.TestCase):
     # https://en.wikipedia.org/wiki/Binary_tree#/media/File:Binary_tree.svg
     _tree = Node(2,
                  Node(7,
@@ -36,10 +52,14 @@ class TestBFS(unittest.TestCase):
                            Node(4, None, None),
                            None)))
 
-    _expected = [2, 7, 5, 2, 6, 9, 5, 11, 4]
+    _bfs_expected = [2, 7, 5, 2, 6, 9, 5, 11, 4]
+    _dfs_expected = [2, 7, 2, 6, 5, 11, 5, 9, 4]
 
     def test_bfs(self):
-        self.assertEqual(BFS().run(self._tree), self._expected, "Error")
+        self.assertEqual(BFS().run(self._tree), self._bfs_expected, "Error")
+
+    def test_dfs(self):
+        self.assertEqual(DFS().run(self._tree), self._dfs_expected, "Error")
 
 
 if __name__ == '__main__':
