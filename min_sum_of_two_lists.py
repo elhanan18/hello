@@ -18,7 +18,6 @@ class MinSumOfTwoLists:
         return min_sum
 
 
-
 class TestMinSumOfTwoLists(unittest.TestCase):
 
     _arrays = [([1], [2], 1),
