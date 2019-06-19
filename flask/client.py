@@ -3,7 +3,7 @@ import requests
 url = 'http://localhost:5000/hello'
 signup = 'http://localhost:5000/signup'
 status = 'http://localhost:5000/status'
-data = "Elhanan"
+data = "some data"
 
 r = requests.post(url, data=data, allow_redirects=True)
 print(r.content)
