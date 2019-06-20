@@ -1,6 +1,12 @@
 import sys
 
 
+'''
+Run: python RPN_2.py "a b +"
+Variables input: a 2 b 3
+'''
+
+
 class Calculator:
     def __init__(self):
         self._expression = []
